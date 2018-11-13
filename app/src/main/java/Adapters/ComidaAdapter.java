@@ -9,13 +9,14 @@ import android.widget.Button;
 import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Objects.Comida;
 
 public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ViewHolder> {
 
-   private ArrayList<Comida> comidas;
-    public ComidaAdapter(ArrayList<Comida> comidas){
+   private List<Comida> comidas;
+    public ComidaAdapter(List<Comida> comidas){
         this.comidas=comidas;
     }
 
