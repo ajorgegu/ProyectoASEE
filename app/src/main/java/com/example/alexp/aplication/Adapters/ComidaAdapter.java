@@ -1,4 +1,4 @@
-package Adapters;
+package com.example.alexp.aplication.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,15 +8,14 @@ import android.widget.Button;
 
 import com.example.alexp.aplication.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import Objects.Comida;
+import com.example.alexp.aplication.Objects.Comida;
 
 public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ViewHolder> {
 
-   private List<Comida> comidas;
-    public ComidaAdapter(List<Comida> comidas){
+   private List<String> comidas;
+    public ComidaAdapter(List<String> comidas){
         this.comidas=comidas;
     }
 
@@ -28,7 +27,7 @@ public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ComidaAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.comida.setText(comidas.get(i).getNombre());
+        viewHolder.comida.setText(comidas.get(i));
     }
 
     @Override

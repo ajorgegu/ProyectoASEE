@@ -1,6 +1,4 @@
-package Objects;
-
-import android.arch.persistence.room.Entity;
+package com.example.alexp.aplication.Objects;
 
 
 public class Alimento {

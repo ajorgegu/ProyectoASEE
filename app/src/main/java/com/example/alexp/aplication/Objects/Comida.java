@@ -1,15 +1,21 @@
-package Objects;
+package com.example.alexp.aplication.Objects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-
 @Entity
 public class Comida {
 
+   // @PrimaryKey
+   // @NonNull
+    @ColumnInfo
+    private int dia;
+    @ColumnInfo
+    private int mes;
+    @ColumnInfo
+    private int anio;
     @PrimaryKey
     @NonNull
     private String nombre;
@@ -17,11 +23,38 @@ public class Comida {
    // @ColumnInfo(name="alimentos")
     //private ArrayList<Alimento> alimentos;
 
-
-    public Comida(String nombre){
+    public Comida(int dia, int mes , int anio, String nombre){
+        this.dia=dia;
+        this.mes=mes;
+        this.anio=anio;
         this.nombre=nombre;
         //this.alimentos=new ArrayList<>();
     }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
   /*  public Comida(String nombre, ArrayList<Alimento> alimentos) {
         this.nombre = nombre;
         this.alimentos = alimentos;

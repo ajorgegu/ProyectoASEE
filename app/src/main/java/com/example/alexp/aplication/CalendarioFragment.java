@@ -30,6 +30,9 @@ public class CalendarioFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Intent i = new Intent(getActivity(),ComidasActivity.class);
+                i.putExtra("anio",year);
+                i.putExtra("mes",month);
+                i.putExtra("dia",dayOfMonth);
                 getActivity().startActivity(i);
             }
         });

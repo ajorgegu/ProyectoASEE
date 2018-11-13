@@ -11,7 +11,7 @@ import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import Adapters.ViewPagerAdapter;
+import com.example.alexp.aplication.Adapters.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar ;

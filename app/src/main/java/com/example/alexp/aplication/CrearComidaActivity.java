@@ -13,8 +13,8 @@ import android.widget.EditText;
 
 import java.util.List;
 
-import DataBase.AppDataBase;
-import Objects.Comida;
+import com.example.alexp.aplication.DataBase.AppDataBase;
+import com.example.alexp.aplication.Objects.Comida;
 
 public class CrearComidaActivity extends AppCompatActivity{
 
@@ -32,15 +32,19 @@ public class CrearComidaActivity extends AppCompatActivity{
         b=findViewById(R.id.aceptar);
 
         final AppDataBase adb = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,"production").allowMainThreadQueries().build();
-        List<Comida> comidas=adb.comidaDAO().getAllComidas();
+        List<String> comidas=adb.comidaDAO().getAllComidas(getIntent().getExtras().getInt("dia"),getIntent().getExtras().getInt("mes"),getIntent().getExtras().getInt("anio"));
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //guardar en room
                 Log.d("Boton aceptar","Aceptando comida");
-                adb.comidaDAO().insertComidas(new Comida(ncomida.getText().toString()));
-                startActivity(new Intent(CrearComidaActivity.this,ComidasActivity.class));
+                adb.comidaDAO().insertComidas(new Comida(getIntent().getExtras().getInt("dia"),getIntent().getExtras().getInt("mes"),getIntent().getExtras().getInt("anio"),ncomida.getText().toString()));
+                Intent i = new Intent(CrearComidaActivity.this,ComidasActivity.class);
+                i.putExtra("anio",getIntent().getExtras().getInt("anio"));
+                i.putExtra("mes",getIntent().getExtras().getInt("mes"));
+                i.putExtra("dia",getIntent().getExtras().getInt("dia"));
+                startActivity(i);
             }
         });
 
