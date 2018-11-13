@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--TODO:Make a cool background here-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textWhere"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/responseWhere"
+            android:layout_marginTop="12dp"
+            android:text="Where are you going?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <EditText
+            android:id="@+id/responseWhere"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="33dp"
+            android:hint="write your destination..."
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/textContacts"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/responseWhere"
+            android:layout_marginTop="80dp"
+            android:text="What contacts do you want to aware?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
