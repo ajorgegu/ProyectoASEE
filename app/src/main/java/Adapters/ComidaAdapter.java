@@ -1,20 +1,21 @@
-package com.example.alexp.aplication;
+package Adapters;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
 
+import Objects.Comida;
+
 public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ViewHolder> {
 
-   private ArrayList<String> comidas;
-    public ComidaAdapter(ArrayList<String> comidas){
+   private ArrayList<Comida> comidas;
+    public ComidaAdapter(ArrayList<Comida> comidas){
         this.comidas=comidas;
     }
 
@@ -26,7 +27,7 @@ public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ComidaAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.comida.setText(comidas.get(i));
+        viewHolder.comida.setText(comidas.get(i).getNombre());
     }
 
     @Override
