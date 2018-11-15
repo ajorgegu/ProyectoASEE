@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1073823178064",
+    "firebase_url": "https://fitline-4969.firebaseio.com",
+    "project_id": "fitline-4969",
+    "storage_bucket": "fitline-4969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073823178064:android:d1350248e2a4acff",
+        "android_client_info": {
+          "package_name": "com.example.alexp.aplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073823178064-dmobpavcb9j7v4gocepkbk7ss9bms9iq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alexp.aplication",
+            "certificate_hash": "47a2912713bd343a30c304131b2155b8e3f96289"
+          }
+        },
+        {
+          "client_id": "1073823178064-jo3hktenj9fq67bgstuvtl3au5ccbkrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACa3k6-RLoOe0-PrSUnuHleH9TUkOGRU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073823178064-jo3hktenj9fq67bgstuvtl3au5ccbkrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

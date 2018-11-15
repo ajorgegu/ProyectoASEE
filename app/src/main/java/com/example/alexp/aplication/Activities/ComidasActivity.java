@@ -1,4 +1,4 @@
-package com.example.alexp.aplication;
+package com.example.alexp.aplication.Activities;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 import com.example.alexp.aplication.Adapters.ComidaAdapter;
 import com.example.alexp.aplication.DataBase.AppDataBase;
-import com.example.alexp.aplication.Objects.Comida;
+import com.example.alexp.aplication.R;
 
 public class ComidasActivity extends AppCompatActivity {
 

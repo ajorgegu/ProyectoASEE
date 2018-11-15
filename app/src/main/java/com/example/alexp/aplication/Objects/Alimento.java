@@ -6,6 +6,7 @@ public class Alimento {
     private String nombre;
     private float cantidad;
     private float calorias;
+    private String unidad;
     private float proteinas;
     private float hidratos;
     private float grasas;
@@ -15,17 +16,18 @@ public class Alimento {
         this.nombre="";
         this.cantidad=0;
         this.calorias=0;
+        this.unidad="";
         this.proteinas=0;
         this.hidratos=0;
         this.grasas=0;
-
     }
 
-    public Alimento(int id, String nombre, float cantidad, float calorias, float proteinas, float hidratos, float grasas) {
+    public Alimento(int id, String nombre, float cantidad, float calorias, String unidad, float proteinas, float hidratos, float grasas) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.calorias = calorias;
+        this.unidad= unidad;
         this.proteinas = proteinas;
         this.hidratos = hidratos;
         this.grasas = grasas;
@@ -59,10 +61,11 @@ public class Alimento {
         this.grasas = grasas;
     }
 
-    public String getNombre() {
+    public String getUnidad() {return unidad;}
 
-        return nombre;
-    }
+    public void setUnidad(String unidad) {this.unidad = unidad;}
+
+    public String getNombre() {return nombre;}
 
     public float getCantidad() {
         return cantidad;
@@ -84,8 +87,5 @@ public class Alimento {
         return grasas;
     }
 
-    public int getId() {
-
-        return id;
-    }
+    public int getId() {return id;}
 }

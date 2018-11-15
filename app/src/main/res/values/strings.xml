@@ -21,5 +21,6 @@
     <string name="page3">Alimentos</string>
     <string name="elige_el_d_a">Elige el día</string>
     <string name="aceptar">Aceptar</string>
+    <string name="checkboxalimento">CheckBox</string>
 
 </resources>
