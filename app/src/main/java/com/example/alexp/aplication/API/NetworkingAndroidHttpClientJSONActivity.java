@@ -14,17 +14,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.alexp.aplication.Activities.ListaAlimentosActivity;
+import com.example.alexp.aplication.Objects.Alimento;
+
+import static java.nio.file.Paths.get;
 
 public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
 
     private static final String ID = "id";
     private static final String NOMBRE = "nombre";
     private static final String CANTIDAD = "cantidad";
-    private static final String CALORIAS = "calorias";
+    private static final String UNIDAD = "calorias";
     private static final String PROTEINAS = "proteinas";
     private static final String HIDRATOS = "hidratos";
     private static final String GRASAS = "grasas";
-    private ArrayList<String> alimentos ;
+    private ArrayList<Alimento> alimentos ;
 
 
     @Override
@@ -33,12 +36,12 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
         new HttpGetTask().execute();
     }
 
-    private class HttpGetTask extends AsyncTask<Void, Void, ArrayList<String>> {
+    private class HttpGetTask extends AsyncTask<Void, Void, ArrayList<Alimento>> {
 
         private static final String BASE_URL = "https://drive.google.com/a/alumnos.unex.es/uc?authuser=1&id=1w50uRcKXheRXkqyXjkAa7QAyOvmfpMPG&export=download";
 
         @Override
-        protected ArrayList<String> doInBackground(Void... params) {
+        protected ArrayList<Alimento> doInBackground(Void... params) {
             URL queryURL;
             JSONArray result;
 
@@ -55,16 +58,20 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<String> result) {
+        protected void onPostExecute(ArrayList<Alimento> result) {
             alimentos = result;
             Intent i=  new Intent(NetworkingAndroidHttpClientJSONActivity.this, ListaAlimentosActivity.class);
             i.putExtra("lista",alimentos);
+            i.putExtra("anio",getIntent().getExtras().getInt("anio"));
+            i.putExtra("mes",getIntent().getExtras().getInt("mes"));
+            i.putExtra("dia",getIntent().getExtras().getInt("dia"));
+            i.putExtra("comida",getIntent().getExtras().getInt("nombre"));
             startActivity(i);
         }
     }
 
-    public ArrayList<String> jsonToList(JSONArray responseObject) {
-        ArrayList<String> result = new ArrayList<String>();
+    public ArrayList<Alimento> jsonToList(JSONArray responseObject) {
+        ArrayList<Alimento> result = new ArrayList<Alimento>();
 
         try {
          //   JSONArray alimentos = responseObject
@@ -72,13 +79,15 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
 
             for (int i = 0; i < responseObject.length(); i++) {
                 JSONObject alimento = responseObject.getJSONObject(i);
-                result.add(alimento.get(NOMBRE)  + "\n"
+                Alimento a = new Alimento(alimento.getInt(ID),alimento.getString(NOMBRE),(float)alimento.getDouble(CANTIDAD),alimento.getString(UNIDAD),(float)alimento.getDouble(PROTEINAS),(float)alimento.getDouble(HIDRATOS),(float)alimento.getDouble(GRASAS));
+              /*  result.add(alimento.get(NOMBRE)  + "\n"
                         +  "ID: "+ alimento.get(ID) + '\n'
                         +  " Cantidad: "+ alimento.get(CANTIDAD) + '\n'
                         +  " Unidad: "+ alimento.get(CALORIAS) + '\n'
                         +  " Proteinas: "+ alimento.get(PROTEINAS) + '\n'
                         +  " Hidratos: "+ alimento.get(HIDRATOS)+ '\n'
-                        +  " Grasas: "+ alimento.get(GRASAS));
+                        +  " Grasas: "+ alimento.get(GRASAS));*/
+              result.add(a);
             }
         } catch (JSONException e) {
             e.printStackTrace();

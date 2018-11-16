@@ -14,7 +14,7 @@
         android:layout_height="58dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginTop="145dp"
         android:contentDescription="@string/defaultimagen"
         app:srcCompat="@drawable/perfil" />
 
@@ -22,20 +22,17 @@
         android:id="@+id/nombreUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="230dp"
+        android:layout_alignStart="@+id/eUser"
+        android:layout_marginTop="215dp"
         android:text="@string/nombre" />
 
     <EditText
         android:id="@+id/nUser"
-        android:layout_width="351dp"
+        android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/nombreUser"
-        android:layout_marginStart="16dp"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
         android:hint="@string/nombre_usuario"
         android:inputType="text|textPersonName" />
 
@@ -45,13 +42,15 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/nombreUser"
         android:layout_below="@+id/nUser"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-1dp"
         android:text="@string/apellidos" />
 
     <EditText
         android:id="@+id/apeUser"
-        android:layout_width="360dp"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edadUser"
+        android:layout_alignStart="@+id/nUser"
         android:layout_below="@+id/apellidosUser"
         android:ems="10"
         android:hint="@string/apellidos_usuario"
@@ -60,20 +59,17 @@
     <TextView
         android:id="@+id/edadUser"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="187dp"
-        android:layout_marginStart="18dp"
+        android:layout_height="18dp"
+        android:layout_alignStart="@+id/nombreUser"
+        android:layout_below="@+id/apeUser"
         android:text="@string/edad" />
 
     <EditText
         android:id="@+id/eUser"
-        android:layout_width="357dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/apeUser"
         android:layout_below="@+id/edadUser"
-        android:layout_marginTop="-187dp"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="@string/edad"
         android:inputType="text|textPersonName" />
@@ -82,16 +78,17 @@
         android:id="@+id/pesoUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/apeUser"
+        android:layout_alignStart="@+id/nombreUser"
         android:layout_below="@+id/eUser"
         android:text="@string/peso" />
 
     <EditText
         android:id="@+id/pUser"
-        android:layout_width="357dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/apeUser"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/pesoUser"
+        android:layout_marginEnd="18dp"
         android:ems="10"
         android:hint="@string/peso"
         android:inputType="text|textPersonName" />
@@ -101,9 +98,8 @@
         android:layout_width="157dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginStart="121dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
         android:background="#4964f8"
         android:text="@string/guardar_cambios"
         android:textColor="@android:color/background_light"

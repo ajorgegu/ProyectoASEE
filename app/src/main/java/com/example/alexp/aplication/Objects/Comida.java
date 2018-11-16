@@ -2,14 +2,20 @@ package com.example.alexp.aplication.Objects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
 import android.support.annotation.NonNull;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 @Entity
 public class Comida {
 
-   // @PrimaryKey
-   // @NonNull
     @ColumnInfo
     private int dia;
     @ColumnInfo
@@ -20,15 +26,11 @@ public class Comida {
     @NonNull
     private String nombre;
 
-   // @ColumnInfo(name="alimentos")
-    //private ArrayList<Alimento> alimentos;
-
     public Comida(int dia, int mes , int anio, String nombre){
         this.dia=dia;
         this.mes=mes;
         this.anio=anio;
         this.nombre=nombre;
-        //this.alimentos=new ArrayList<>();
     }
 
     public int getDia() {
@@ -55,11 +57,6 @@ public class Comida {
         this.anio = anio;
     }
 
-  /*  public Comida(String nombre, ArrayList<Alimento> alimentos) {
-        this.nombre = nombre;
-        this.alimentos = alimentos;
-    }*/
-
     public String getNombre() {
         return nombre;
     }
@@ -68,11 +65,4 @@ public class Comida {
         this.nombre = nombre;
     }
 
-  /*  public ArrayList<Alimento> getAlimentos() {
-        return alimentos;
-    }
-
-    public void setAlimentos(ArrayList<Alimento> alimentos) {
-        this.alimentos = alimentos;
-    }*/
 }
