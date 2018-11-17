@@ -9,20 +9,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.alexp.aplication.Adapters.ComidaAdapter;
 import com.example.alexp.aplication.DataBase.AppDataBase;
+import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 
 public class ComidasActivity extends AppCompatActivity {
 
-    RecyclerView rv;
-    RecyclerView.Adapter rvadapter;
-    FloatingActionButton fab;
-    ArrayList<String> comidas;
+    private RecyclerView rv;
+    private RecyclerView.Adapter rvadapter;
+    private FloatingActionButton fab;
+    private List<String> comidas;
+    public static ComidaDAO cdao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +35,13 @@ public class ComidasActivity extends AppCompatActivity {
         Toolbar t=(Toolbar)findViewById(R.id.toolbar);
         t.setTitle("FitLine");
         setSupportActionBar(t);
-        rv=findViewById(R.id.recyclerView);
-        AppDataBase adb = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,"production").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        List<String> comidas=adb.comidaDAO().getAllComidas(getIntent().getExtras().getInt("dia"),getIntent().getExtras().getInt("mes"),getIntent().getExtras().getInt("anio"));
 
+        cdao = AppDataBase.getInstance(this).comidaDAO();
+        comidas=cdao.getAllComidas(getIntent().getExtras().getInt("dia"),getIntent().getExtras().getInt("mes"),getIntent().getExtras().getInt("anio"));
+
+        rv=findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rvadapter=new ComidaAdapter(comidas);
+        rvadapter=new ComidaAdapter(this,comidas);
         rv.setAdapter(rvadapter);
 
         fab= findViewById(R.id.fab);

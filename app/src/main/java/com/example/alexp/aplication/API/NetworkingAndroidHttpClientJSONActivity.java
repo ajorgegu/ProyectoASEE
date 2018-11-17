@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.alexp.aplication.Activities.ListaAlimentosActivity;
 import com.example.alexp.aplication.Objects.Alimento;
@@ -28,7 +29,6 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
     private static final String HIDRATOS = "hidratos";
     private static final String GRASAS = "grasas";
     private ArrayList<Alimento> alimentos ;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,10 +62,10 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
             alimentos = result;
             Intent i=  new Intent(NetworkingAndroidHttpClientJSONActivity.this, ListaAlimentosActivity.class);
             i.putExtra("lista",alimentos);
+            i.putExtra("nombrecomida",getIntent().getExtras().getString("nombrecomida"));
             i.putExtra("anio",getIntent().getExtras().getInt("anio"));
             i.putExtra("mes",getIntent().getExtras().getInt("mes"));
             i.putExtra("dia",getIntent().getExtras().getInt("dia"));
-            i.putExtra("comida",getIntent().getExtras().getInt("nombre"));
             startActivity(i);
         }
     }
@@ -74,19 +74,15 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
         ArrayList<Alimento> result = new ArrayList<Alimento>();
 
         try {
-         //   JSONArray alimentos = responseObject
-                   // .getJSONArray(NOMBRE);
-
             for (int i = 0; i < responseObject.length(); i++) {
                 JSONObject alimento = responseObject.getJSONObject(i);
-                Alimento a = new Alimento(alimento.getInt(ID),alimento.getString(NOMBRE),(float)alimento.getDouble(CANTIDAD),alimento.getString(UNIDAD),(float)alimento.getDouble(PROTEINAS),(float)alimento.getDouble(HIDRATOS),(float)alimento.getDouble(GRASAS));
-              /*  result.add(alimento.get(NOMBRE)  + "\n"
-                        +  "ID: "+ alimento.get(ID) + '\n'
-                        +  " Cantidad: "+ alimento.get(CANTIDAD) + '\n'
-                        +  " Unidad: "+ alimento.get(CALORIAS) + '\n'
-                        +  " Proteinas: "+ alimento.get(PROTEINAS) + '\n'
-                        +  " Hidratos: "+ alimento.get(HIDRATOS)+ '\n'
-                        +  " Grasas: "+ alimento.get(GRASAS));*/
+                Alimento a = new Alimento(alimento.getInt(ID),
+                        alimento.getString(NOMBRE),
+                        (float)alimento.getDouble(CANTIDAD),
+                        alimento.getString(UNIDAD),(float)
+                        alimento.getDouble(PROTEINAS),
+                        (float)alimento.getDouble(HIDRATOS),
+                        (float)alimento.getDouble(GRASAS));
               result.add(a);
             }
         } catch (JSONException e) {

@@ -17,6 +17,7 @@ public class HolderAlimentos extends RecyclerView.ViewHolder implements  View.On
         super(itemView);
         t = (TextView) itemView.findViewById(R.id.fila_alimento);
         cb = (CheckBox) itemView.findViewById(R.id.checkBox);
+        cb.setOnClickListener(this);
     }
 
     public void setItemClickListener(itemClickListener icl){this.icl=icl;}

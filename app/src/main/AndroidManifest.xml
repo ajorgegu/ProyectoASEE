@@ -36,6 +36,9 @@
         <activity android:name=".Activities.ListaAlimentosActivity">
         </activity>
 
+        <activity android:name=".Activities.DescripcionComidaActivity">
+        </activity>
+
     </application>
 
 </manifest>

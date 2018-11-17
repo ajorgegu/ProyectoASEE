@@ -1,12 +1,23 @@
 package com.example.alexp.aplication.DataBase;
 
-import android.arch.persistence.room.Database;
+import  android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
+
+import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
 import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 
-@Database(entities = {Comida.class}, version =3)
+@Database(entities = {Comida.class , Alimento.class}, version =3)
 public abstract class AppDataBase extends RoomDatabase {
+    private static AppDataBase apd = null;
+    public static AppDataBase getInstance(Context c){
+        if(apd==null){
+            apd= Room.databaseBuilder(c.getApplicationContext(),AppDataBase.class,"appdb.bd").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        }
+        return apd;
+    }
 
     public abstract ComidaDAO comidaDAO();
 }

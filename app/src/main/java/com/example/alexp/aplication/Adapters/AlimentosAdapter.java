@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
+import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
@@ -23,7 +25,9 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     private ArrayList<Alimento> alimentos;
     private ArrayList<Alimento> alimentosSeleccionados= new ArrayList<>();
     private List<String> cantidades = new ArrayList<>();
-    private Context c;
+    private static Context c;
+    private ComidaDAO cdao;
+    private String nombrecomida;
 
     public AlimentosAdapter(Context c,ArrayList<Alimento> alimentos){
         this.c=c;
@@ -46,17 +50,34 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
                 "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
                 "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
 
-        holder.setItemClickListener(new itemClickListener() {
+        holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 CheckBox cb2 = (CheckBox) v;
+                cdao= AppDataBase.getInstance(c).comidaDAO();
                 if(cb2.isChecked()){
                     alimentosSeleccionados.add(alimentos.get(pos));
+                    alimentos.get(pos).setNombreComida(nombrecomida);
+                    Log.d("alimento seleccionado: ",alimentos.get(pos).getNombre());
+                    cdao.insertAlimento(alimentos.get(pos));
+
+
                 }else{
                     alimentosSeleccionados.remove(alimentos.get(pos));
+                    alimentos.get(pos).setNombreComida(nombrecomida);
+                    Log.d("alimento deseleccionado: ",alimentos.get(pos).getNombre());
+                    cdao.deleteAlimento(alimentos.get(pos));
                 }
             }
         });
+    }
+
+    public void setNombrecomida(String nombrecomida) {
+        this.nombrecomida = nombrecomida;
+    }
+
+    public String getNombrecomida() {
+        return this.nombrecomida;
     }
 
     @Override

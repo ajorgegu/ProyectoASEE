@@ -39,6 +39,17 @@ public class Alimento implements Serializable {
         this.grasas=0;
     }
 
+    public Alimento(int id, String nombre, float cantidad, String unidad, float proteinas, float hidratos, float grasas, String nombreComida) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.unidad= unidad;
+        this.proteinas = proteinas;
+        this.hidratos = hidratos;
+        this.grasas = grasas;
+        this.nombreComida=nombreComida;
+    }
+
     public Alimento(int id, String nombre, float cantidad, String unidad, float proteinas, float hidratos, float grasas) {
         this.id = id;
         this.nombre = nombre;
@@ -96,4 +107,8 @@ public class Alimento implements Serializable {
     }
 
     public int getId() {return id;}
+
+    public String getNombreComida() { return nombreComida; }
+
+    public void setNombreComida(String nombreComida) {this.nombreComida = nombreComida;}
 }

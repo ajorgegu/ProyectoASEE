@@ -1,4 +1,9 @@
 package com.example.alexp.aplication.Activities;
+import android.arch.persistence.db.SupportSQLiteOpenHelper;
+import android.arch.persistence.room.DatabaseConfiguration;
+import android.arch.persistence.room.InvalidationTracker;
+import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,23 +12,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.alexp.aplication.Adapters.AlimentosAdapter;
+import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
+import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ListaAlimentosActivity extends AppCompatActivity {
 
     private RecyclerView rv;
     private AlimentosAdapter rvadapter;
     private FloatingActionButton fab;
-    private StringBuffer sb;
-    private ArrayList<Alimento> alimentos;
+    public static Comida c;
+    public static ComidaDAO cdao;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,44 +40,23 @@ public class ListaAlimentosActivity extends AppCompatActivity {
         Toolbar t=findViewById(R.id.toolbar);
         t.setTitle("FitLine");
         setSupportActionBar(t);
+
         rv=findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rvadapter=new AlimentosAdapter(this,(ArrayList<Alimento>)getIntent().getExtras().get("lista"));
+        rvadapter=new AlimentosAdapter(ListaAlimentosActivity.this,(ArrayList<Alimento>)getIntent().getExtras().get("lista"));
+        rvadapter.setNombrecomida(getIntent().getExtras().getString("nombrecomida"));
         rv.setAdapter(rvadapter);
 
+
+      //  Log.d("Alimentos seleccionados: ",rvadapter.getAlimentosSeleccionados().get(0).getNombre());
         fab= findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { sb = new StringBuffer();
-               ArrayList<Alimento> select = new ArrayList<Alimento>() {
-               };
-
-                for(int i=0; i<rvadapter.getAlimentosSeleccionados().size();i++){
-                   // ArrayList<String> a = new ArrayList<>();
-                    //a.add(rvadapter.getAlimentosSeleccionados().get(i));
-                  //  a.add()
-                       select.add(rvadapter.getAlimentosSeleccionados().get(i));
-                    Alimento a =  new Alimento(rvadapter.getAlimentosSeleccionados().get(i).getId(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getNombre(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getCantidad(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getUnidad(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getProteinas(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getHidratos(),
-                            rvadapter.getAlimentosSeleccionados().get(i).getGrasas()
-                            );
-                    alimentos.add(a);
-                }
+            public void onClick(View v) { { };
                 Intent i = new Intent(ListaAlimentosActivity.this,ComidasActivity.class);
-
-                Comida c =new Comida(getIntent().getExtras().getInt("dia"),
-                        getIntent().getExtras().getInt("mes"),
-                        getIntent().getExtras().getInt("anio"),
-                        getIntent().getExtras().getString("nombre"));
-
                 i.putExtra("anio",getIntent().getExtras().getInt("anio"));
                 i.putExtra("mes",getIntent().getExtras().getInt("mes"));
                 i.putExtra("dia",getIntent().getExtras().getInt("dia"));
-                i.putExtra("comida",getIntent().getExtras().getInt("nombre"));
                 startActivity(i);
             }
         });
