@@ -14,8 +14,6 @@ import android.view.MenuItem;
 
 import com.example.alexp.aplication.Adapters.ViewPagerAdapter;
 import com.example.alexp.aplication.Fragments.CalendarioFragment;
-import com.example.alexp.aplication.Fragments.PerfilFragment;
-import com.example.alexp.aplication.Fragments.ShettingsActivity;
 import com.example.alexp.aplication.R;
 
 public class MainActivity extends AppCompatActivity {

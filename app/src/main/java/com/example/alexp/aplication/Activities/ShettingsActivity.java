@@ -1,4 +1,4 @@
-package com.example.alexp.aplication.Fragments;
+package com.example.alexp.aplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
