@@ -10,7 +10,7 @@ import com.example.alexp.aplication.Objects.Comida;
 import com.example.alexp.aplication.Objects.Comida_Alimento;
 import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 
-@Database(entities = {Comida.class , Alimento.class, Comida_Alimento.class}, version =4)
+@Database(entities = {Comida.class , Alimento.class, Comida_Alimento.class}, version =5)
 public abstract class AppDataBase extends RoomDatabase {
     private static AppDataBase apd = null;
     public static AppDataBase getInstance(Context c){

@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.alexp.aplication.Adapters.AlimentosAdapter;
+import com.example.alexp.aplication.Adapters.DescripcionAdapter;
 import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
@@ -23,7 +24,7 @@ import java.util.List;
 public class DescripcionComidaActivity extends AppCompatActivity {
 
     private RecyclerView rv;
-    private AlimentosAdapter rvadapter;
+    private DescripcionAdapter rvadapter;
     private ComidaDAO c;
     private ArrayList<Alimento> alimentos = new ArrayList<>();
 
@@ -36,12 +37,14 @@ public class DescripcionComidaActivity extends AppCompatActivity {
         setSupportActionBar(t);
         rv=findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
         c=AppDataBase.getInstance(getApplicationContext()).comidaDAO();
         ArrayList<Comida_Alimento> c_alimentos= (ArrayList<Comida_Alimento>) AppDataBase.getInstance(this).comidaDAO().getComidasAlimento(getIntent().getExtras().getString("nombrecomida"));
+
         for(int i=0; i<c_alimentos.size();i++){
             alimentos.add(c.getAlimento(c_alimentos.get(i).getId()));
         }
-        rvadapter=new AlimentosAdapter(this,alimentos);
+        rvadapter=new DescripcionAdapter(this,alimentos,c_alimentos);
         rv.setAdapter(rvadapter);
     }
 }

@@ -86,7 +86,7 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
                         alimento.getDouble(PROTEINAS),
                         (float)alimento.getDouble(HIDRATOS),
                         (float)alimento.getDouble(GRASAS));
-                Log.d("Alimento dentro: ",Integer.toString(cdao.getAlimento(a.getId()).getId()));
+//                Log.d("Alimento dentro: ",Integer.toString(cdao.getAlimento(a.getId()).getId()));
                 if(cdao.getAlimento(a.getId())==null)
                      cdao.insertAlimento(a);
               result.add(a);

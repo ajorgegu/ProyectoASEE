@@ -16,10 +16,13 @@ public class Comida_Alimento implements Serializable {
     @ColumnInfo
     @NonNull
     private int id;
+    @ColumnInfo
+    private float cantidad;
 
-    public Comida_Alimento(String comida, int id){
+    public Comida_Alimento(String comida, int id, float cantidad){
         this.comida=comida;
         this.id=id;
+        this.cantidad=cantidad;
     }
 
     public String getComida() {
@@ -36,5 +39,13 @@ public class Comida_Alimento implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public float getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(float cantidad) {
+        this.cantidad = cantidad;
     }
 }

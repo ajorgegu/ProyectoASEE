@@ -19,21 +19,20 @@ import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
-public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
+public class DescripcionAdapter extends RecyclerView.Adapter<HolderAlimentos> {
 
     private ArrayList<Alimento> alimentos;
     private ArrayList<Alimento> alimentosSeleccionados= new ArrayList<>();
-    private ArrayList<Comida_Alimento> c_a;
+    private ArrayList<Comida_Alimento> c_a= new ArrayList<>();
     private static Context c;
     private ComidaDAO cdao;
     private String nombrecomida;
     private EditText e;
 
-    public AlimentosAdapter(Context c, ArrayList<Alimento> alimentos, ArrayList<Comida_Alimento>c_a){
+    public DescripcionAdapter(Context c, ArrayList<Alimento> alimentos, ArrayList<Comida_Alimento>c_a){
         this.c=c;
         this.alimentos=alimentos;
         this.c_a=c_a;
@@ -48,33 +47,30 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     @Override
     public void onBindViewHolder(final HolderAlimentos holder, int i) {
         holder.t.setText(alimentos.get(i).getNombre()+"\n"+
-                 "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
+                "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
                 "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
-               "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
+                "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
                 "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
                 "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
 
-     /*   if(c_a!=null)
-        holder.et.setText(String.valueOf(c_a.get(i).getCantidad()));*/
+    Log.d("Mostrando cantidad: ",String.valueOf(c_a.get(i).getCantidad()));
+        holder.et.setText(String.valueOf(c_a.get(i).getCantidad()));
 
         holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 CheckBox cb2 = (CheckBox) v;
                 cdao= AppDataBase.getInstance(c).comidaDAO();
-
-                //Log.d("Cantidad del alimento: ",String.valueOf(cantidad));
+                Float cantidad= Float.parseFloat(holder.et.getText().toString());
+                Log.d("Cantidad del alimento: ",String.valueOf(cantidad));
                 if(cb2.isChecked()){
-                    final Float cantidad=Float.parseFloat(holder.et.getText().toString()) ;
                     alimentosSeleccionados.add(alimentos.get(pos));
-                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentos.get(pos).getId(),cantidad);
-                    Log.d("Comida_Alimento: ",ca.getComida()+" "+ca.getId()+" "+ca.getCantidad());
+                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentosSeleccionados.get(pos).getId(),cantidad);
                     c_a.add(ca);
 
                 }else{
-                    final Float cantidad=Float.parseFloat(holder.et.getText().toString()) ;
                     alimentosSeleccionados.remove(alimentos.get(pos));
-                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentos.get(pos).getId(),cantidad);
+                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentosSeleccionados.get(pos).getId(), cantidad);
                     c_a.remove(ca);
 
                 }
