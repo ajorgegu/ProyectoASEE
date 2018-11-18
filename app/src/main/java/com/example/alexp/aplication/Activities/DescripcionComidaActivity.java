@@ -31,7 +31,7 @@ public class DescripcionComidaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alimentos);
+        setContentView(R.layout.descripalimentos);
         Toolbar t=findViewById(R.id.toolbar);
         t.setTitle("FitLine");
         setSupportActionBar(t);

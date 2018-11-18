@@ -13,4 +13,23 @@
         android:layout_marginTop="136dp"
         android:background="@android:color/background_light" />
 
+    <TextView
+        android:id="@+id/recordar"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="70dp"
+        android:text="@string/recordatorio" />
+
+    <TextView
+        android:id="@+id/recordatorioText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/recordar"
+        android:layout_marginStart="66dp"
+        android:text="@string/recordatoriotext" />
+
+
 </RelativeLayout>

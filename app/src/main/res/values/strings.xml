@@ -24,5 +24,6 @@
     <string name="checkboxalimento">CheckBox</string>
     <string name="introduzca_cantidad">Introduzca cantidad</string>
     <string name="cantidad">Cantidad</string>
-
+    <string name="recordatorio">Incluye Recordatorio</string>
+    <string name="recordatoriotext">Recordatorio: </string>
 </resources>

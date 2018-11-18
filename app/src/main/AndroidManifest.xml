@@ -39,6 +39,9 @@
         <activity android:name=".Activities.DescripcionComidaActivity">
         </activity>
 
+        <activity android:name=".Fragments.ShettingsActivity">
+        </activity>
+
     </application>
 
 </manifest>
