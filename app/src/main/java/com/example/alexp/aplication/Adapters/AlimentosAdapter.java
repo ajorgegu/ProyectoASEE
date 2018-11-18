@@ -43,7 +43,6 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     @Override
     public void onBindViewHolder(HolderAlimentos holder, int i) {
         holder.t.setText(alimentos.get(i).getNombre()+"\n"+
-                "Id: " + Integer.toString(alimentos.get(i).getId()) +"\n"+
                  "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
                 "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
                "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
@@ -57,16 +56,8 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
                 cdao= AppDataBase.getInstance(c).comidaDAO();
                 if(cb2.isChecked()){
                     alimentosSeleccionados.add(alimentos.get(pos));
-                    alimentos.get(pos).setNombreComida(nombrecomida);
-                    Log.d("alimento seleccionado: ",alimentos.get(pos).getNombre());
-                    cdao.insertAlimento(alimentos.get(pos));
-
-
                 }else{
                     alimentosSeleccionados.remove(alimentos.get(pos));
-                    alimentos.get(pos).setNombreComida(nombrecomida);
-                    Log.d("alimento deseleccionado: ",alimentos.get(pos).getNombre());
-                    cdao.deleteAlimento(alimentos.get(pos));
                 }
             }
         });
@@ -78,6 +69,10 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
 
     public String getNombrecomida() {
         return this.nombrecomida;
+    }
+
+    public ArrayList<Alimento> getAlimentosSeleccionado(){
+        return this.alimentosSeleccionados;
     }
 
     @Override

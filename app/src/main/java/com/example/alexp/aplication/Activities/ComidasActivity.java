@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,9 +23,9 @@ import com.example.alexp.aplication.R;
 public class ComidasActivity extends AppCompatActivity {
 
     private RecyclerView rv;
-    private RecyclerView.Adapter rvadapter;
+    private ComidaAdapter rvadapter=null;
     private FloatingActionButton fab;
-    private List<String> comidas;
+    private List<String> comidas= new ArrayList<>();
     public static ComidaDAO cdao;
 
 

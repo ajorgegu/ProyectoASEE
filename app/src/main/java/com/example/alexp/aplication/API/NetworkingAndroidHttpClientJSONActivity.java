@@ -15,7 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.alexp.aplication.Activities.ListaAlimentosActivity;
+import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
+import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 
 import static java.nio.file.Paths.get;
 
@@ -72,6 +74,7 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
 
     public ArrayList<Alimento> jsonToList(JSONArray responseObject) {
         ArrayList<Alimento> result = new ArrayList<Alimento>();
+        ComidaDAO cdao = AppDataBase.getInstance(getApplicationContext()).comidaDAO();
 
         try {
             for (int i = 0; i < responseObject.length(); i++) {
@@ -83,6 +86,9 @@ public class NetworkingAndroidHttpClientJSONActivity extends AppCompatActivity {
                         alimento.getDouble(PROTEINAS),
                         (float)alimento.getDouble(HIDRATOS),
                         (float)alimento.getDouble(GRASAS));
+                Log.d("Alimento dentro: ",Integer.toString(cdao.getAlimento(a.getId()).getId()));
+                if(cdao.getAlimento(a.getId())==null)
+                     cdao.insertAlimento(a);
               result.add(a);
             }
         } catch (JSONException e) {

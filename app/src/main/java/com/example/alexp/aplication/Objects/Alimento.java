@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "Alimento",foreignKeys = @ForeignKey(entity = Comida.class, parentColumns = "nombre", childColumns = "nombreComida", onDelete = CASCADE))
+@Entity(tableName = "Alimento")
 public class Alimento implements Serializable {
     @PrimaryKey
     private int id;
@@ -26,8 +26,6 @@ public class Alimento implements Serializable {
     private float hidratos;
     @ColumnInfo
     private float grasas;
-    @ColumnInfo
-    private String nombreComida;
 
     public  Alimento(){
         this.id=0;
@@ -37,17 +35,6 @@ public class Alimento implements Serializable {
         this.proteinas=0;
         this.hidratos=0;
         this.grasas=0;
-    }
-
-    public Alimento(int id, String nombre, float cantidad, String unidad, float proteinas, float hidratos, float grasas, String nombreComida) {
-        this.id = id;
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.unidad= unidad;
-        this.proteinas = proteinas;
-        this.hidratos = hidratos;
-        this.grasas = grasas;
-        this.nombreComida=nombreComida;
     }
 
     public Alimento(int id, String nombre, float cantidad, String unidad, float proteinas, float hidratos, float grasas) {
@@ -107,8 +94,4 @@ public class Alimento implements Serializable {
     }
 
     public int getId() {return id;}
-
-    public String getNombreComida() { return nombreComida; }
-
-    public void setNombreComida(String nombreComida) {this.nombreComida = nombreComida;}
 }

@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@Entity
+@Entity(tableName = "Comida")
 public class Comida implements Serializable{
 
     @ColumnInfo

@@ -9,11 +9,21 @@ import java.util.List;
 
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
+import com.example.alexp.aplication.Objects.Comida_Alimento;
 
 @Dao
 public interface ComidaDAO {
     @Query("SELECT c.nombre FROM Comida c WHERE c.dia=:dia AND c.mes=:mes AND c.anio=:anio")
     List<String> getAllComidas(int dia, int mes, int anio);
+
+    @Query("SELECT * FROM Comida_Alimento c WHERE c.comida=:comida")
+    List<Comida_Alimento> getComidasAlimento(String comida);
+
+    @Query("SELECT * FROM Comida c WHERE c.nombre=:comida")
+    Comida getComida(String comida);
+
+    @Query("SELECT * FROM Alimento a WHERE a.id=:id")
+    Alimento getAlimento(int id);
 
     @Insert
     void insertComidas(Comida...comidas);
@@ -21,10 +31,15 @@ public interface ComidaDAO {
     @Insert
     void insertAlimento(Alimento...alimentos);
 
+    @Insert
+    void insertComidaAlimento(Comida_Alimento...comida_alimentos);
+
     @Delete
     void deleteAlimento(Alimento...alimentos);
 
-    @Query("SELECT * FROM Alimento WHERE nombrecomida=:ncomida")
-    List<Alimento> getAlimentos(String ncomida);
+    @Query("DELETE FROM Comida_Alimento WHERE comida=:comida")
+    void deleteComidaAlimento(String comida);
 
+    @Query("DELETE FROM Comida WHERE nombre=:comida")
+    void deleteComida(String comida);
 }

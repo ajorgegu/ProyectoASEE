@@ -20,6 +20,7 @@ import com.example.alexp.aplication.Adapters.AlimentosAdapter;
 import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
+import com.example.alexp.aplication.Objects.Comida_Alimento;
 import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ListaAlimentosActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     public static Comida c;
     public static ComidaDAO cdao;
+    public ArrayList<Alimento> alimentos;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,11 +46,8 @@ public class ListaAlimentosActivity extends AppCompatActivity {
         rv=findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rvadapter=new AlimentosAdapter(ListaAlimentosActivity.this,(ArrayList<Alimento>)getIntent().getExtras().get("lista"));
-        rvadapter.setNombrecomida(getIntent().getExtras().getString("nombrecomida"));
         rv.setAdapter(rvadapter);
-
-
-      //  Log.d("Alimentos seleccionados: ",rvadapter.getAlimentosSeleccionados().get(0).getNombre());
+        cdao=AppDataBase.getInstance(this).comidaDAO();
         fab= findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +56,13 @@ public class ListaAlimentosActivity extends AppCompatActivity {
                 i.putExtra("anio",getIntent().getExtras().getInt("anio"));
                 i.putExtra("mes",getIntent().getExtras().getInt("mes"));
                 i.putExtra("dia",getIntent().getExtras().getInt("dia"));
+                alimentos=rvadapter.getAlimentosSeleccionados();
+
+                for(int j=0; j<alimentos.size();j++){
+                    Comida_Alimento ca= new Comida_Alimento(getIntent().getExtras().getString("nombrecomida"),alimentos.get(j).getId());
+                    Log.d("Insertando alimento: ",alimentos.get(j).getNombre() + " "+ getIntent().getExtras().getString("nombrecomida"));
+                    cdao.insertComidaAlimento(ca);
+                }
                 startActivity(i);
             }
         });
