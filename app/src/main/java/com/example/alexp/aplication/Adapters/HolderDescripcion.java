@@ -9,18 +9,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.alexp.aplication.R;
 
-public class HolderAlimentos extends RecyclerView.ViewHolder implements  View.OnClickListener{
+public class HolderDescripcion extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
     TextView t;
-    CheckBox cb;
     EditText et;
     itemClickListener icl;
+    Button borrar;
+    Button guardar;
 
-    public HolderAlimentos(@NonNull View itemView) {
+    public HolderDescripcion(@NonNull View itemView) {
         super(itemView);
         t = (TextView) itemView.findViewById(R.id.fila_alimento);
-        cb = (CheckBox) itemView.findViewById(R.id.checkBox);
-        cb.setOnClickListener(this);
+        borrar= (Button) itemView.findViewById(R.id.borrarcomida);
+        borrar.setOnClickListener(this);
         et=(EditText) itemView.findViewById(R.id.cantidadAlimento);
     }
 

@@ -33,10 +33,12 @@
         <activity android:name=".API.NetworkingAndroidHttpClientJSONActivity">
         </activity>
 
-        <activity android:name=".Activities.ListaAlimentosActivity">
+        <activity android:name=".Activities.ListaAlimentosActivity"
+            android:parentActivityName=".Activities.MainActivity">
         </activity>
 
-        <activity android:name=".Activities.DescripcionComidaActivity">
+        <activity android:name=".Activities.DescripcionComidaActivity"
+            android:parentActivityName=".Activities.MainActivity">
         </activity>
 
         <activity android:name=".Activities.ShettingsActivity">

@@ -15,7 +15,7 @@
     <string name="edad">Edad</string>
     <string name="name">Name</string>
     <string name="peso">Peso</string>
-    <string name="guardar_cambios">Guardar Cambios</string>
+    <string name="guardarCambios">Guardar</string>
     <string name="page1">Calendario</string>
     <string name="page2">Perfil</string>
     <string name="page3">Alimentos</string>

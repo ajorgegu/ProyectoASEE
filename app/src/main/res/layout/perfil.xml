@@ -101,7 +101,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
         android:background="#4964f8"
-        android:text="@string/guardar_cambios"
+        android:text="@string/guardarCambios"
         android:textColor="@android:color/background_light"
         tools:textColor="@android:color/background_light" />
 

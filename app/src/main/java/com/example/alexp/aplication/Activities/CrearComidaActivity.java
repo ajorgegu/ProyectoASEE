@@ -46,7 +46,7 @@ public class CrearComidaActivity extends AppCompatActivity{
                         ncomida.getText().toString());
                 cdao = AppDataBase.getInstance(getApplicationContext()).comidaDAO();
                 cdao.insertComidas(c);
-                Intent i = new Intent(CrearComidaActivity.this, NetworkingAndroidHttpClientJSONActivity.class);
+                Intent i = new Intent(CrearComidaActivity.this, ListaAlimentosActivity.class);
                 i.putExtra("nombrecomida",ncomida.getText().toString());
                 i.putExtra("anio",getIntent().getExtras().getInt("anio"));
                 i.putExtra("mes",getIntent().getExtras().getInt("mes"));

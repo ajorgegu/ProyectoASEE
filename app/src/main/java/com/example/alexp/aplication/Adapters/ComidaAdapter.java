@@ -47,7 +47,6 @@ public class ComidaAdapter extends RecyclerView.Adapter<HolderComidas> {
                 if(v.getId()==R.id.fila_comida) {
                     Intent i = new Intent(c, DescripcionComidaActivity.class);
                     i.putExtra("nombrecomida", holder.b.getText().toString());
-                    Log.d("Nombre botón: ", holder.b.getText().toString());
                     c.startActivity(i);
                 }
                 else{

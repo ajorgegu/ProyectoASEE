@@ -1,42 +1,41 @@
 package com.example.alexp.aplication.Adapters;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import  android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
-import com.example.alexp.aplication.Objects.Comida_Alimento;
 import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
 public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
 
     private ArrayList<Alimento> alimentos;
-    private ArrayList<Alimento> alimentosSeleccionados= new ArrayList<>();
-    private ArrayList<Comida_Alimento> c_a;
+    private List<Pair<Integer, Float>> alimcant;
     private static Context c;
     private ComidaDAO cdao;
     private String nombrecomida;
     private EditText e;
+    private ArrayList<Pair<HolderAlimentos,Integer>> haux= new ArrayList<Pair<HolderAlimentos,Integer>>();
 
-    public AlimentosAdapter(Context c, ArrayList<Alimento> alimentos, ArrayList<Comida_Alimento>c_a){
+    public AlimentosAdapter(Context c, ArrayList<Alimento> alimentos,List<Pair<Integer, Float>> alimcant ){
         this.c=c;
         this.alimentos=alimentos;
-        this.c_a=c_a;
+        this.alimcant=alimcant;
     }
 
     @Override
@@ -49,35 +48,17 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     public void onBindViewHolder(final HolderAlimentos holder, int i) {
         holder.t.setText(alimentos.get(i).getNombre()+"\n"+
                  "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
-                "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
-               "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
-                "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
-                "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
-
-     /*   if(c_a!=null)
-        holder.et.setText(String.valueOf(c_a.get(i).getCantidad()));*/
-
+                 "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
+                 "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
+                 "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
+                 "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
+        holder.et.setText("0");
+        Pair p = new Pair(holder,alimentos.get(i).getId());
+        haux.add(p);
         holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                CheckBox cb2 = (CheckBox) v;
-                cdao= AppDataBase.getInstance(c).comidaDAO();
-
-                //Log.d("Cantidad del alimento: ",String.valueOf(cantidad));
-                if(cb2.isChecked()){
-                    final Float cantidad=Float.parseFloat(holder.et.getText().toString()) ;
-                    alimentosSeleccionados.add(alimentos.get(pos));
-                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentos.get(pos).getId(),cantidad);
-                    Log.d("Comida_Alimento: ",ca.getComida()+" "+ca.getId()+" "+ca.getCantidad());
-                    c_a.add(ca);
-
-                }else{
-                    final Float cantidad=Float.parseFloat(holder.et.getText().toString()) ;
-                    alimentosSeleccionados.remove(alimentos.get(pos));
-                    Comida_Alimento ca = new Comida_Alimento(nombrecomida, alimentos.get(pos).getId(),cantidad);
-                    c_a.remove(ca);
-
-                }
+              Log.d("Item seleccionado: ",String.valueOf(pos));
             }
         });
     }
@@ -90,19 +71,20 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
         return this.nombrecomida;
     }
 
-    public ArrayList<Comida_Alimento> getC_a() {
-        return c_a;
+    public List<Pair<Integer, Float>> getAlimcant(){
+        for(int i=0;i<haux.size();i++){
+            if(haux.get(i).first.cb.isChecked()){
+                Pair p = new Pair(haux.get(i).second,Float.parseFloat(haux.get(i).first.et.getText().toString()));
+                alimcant.add(p);
+            }
+        }
+        return this.alimcant;
     }
 
     @Override
     public int getItemCount() {return alimentos.size();}
 
-    public ArrayList<Alimento> getAlimentosSeleccionados(){
-        return this.alimentosSeleccionados;
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         public TextView alimento;
         public CheckBox cb;
         public EditText cantidad;
