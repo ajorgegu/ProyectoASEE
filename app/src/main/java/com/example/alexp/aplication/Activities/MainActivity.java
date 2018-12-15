@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.alexp.aplication.Adapters.ViewPagerAdapter;
 import com.example.alexp.aplication.Fragments.CalendarioFragment;
+import com.example.alexp.aplication.Fragments.PerfilFragment;
 import com.example.alexp.aplication.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         vpa.addFragment(new CalendarioFragment(),"Calendario");
+        vpa.addFragment(new PerfilFragment(getApplication()),"Perfil");
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
