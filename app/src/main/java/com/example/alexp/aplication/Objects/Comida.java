@@ -14,16 +14,19 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@Entity(tableName = "Comida")
+@Entity(tableName = "Comida",primaryKeys ={"nombre","dia","mes","anio"})
 public class Comida implements Serializable{
 
     @ColumnInfo
+    @NonNull
     private int dia;
     @ColumnInfo
+    @NonNull
     private int mes;
     @ColumnInfo
+    @NonNull
     private int anio;
-    @PrimaryKey
+    @ColumnInfo
     @NonNull
     private String nombre;
 

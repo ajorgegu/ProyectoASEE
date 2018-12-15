@@ -1,9 +1,5 @@
 package com.example.alexp.aplication.Activities;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
-import android.arch.persistence.room.Room;
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,20 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.alexp.aplication.API.NetworkingAndroidHttpClientJSONActivity;
 import com.example.alexp.aplication.Adapters.AlimentosAdapter;
 import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
 import com.example.alexp.aplication.Objects.Comida_Alimento;
-import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
+import com.example.alexp.aplication.ObjectsDAO.ComidaAlimentoDAO;
 import com.example.alexp.aplication.R;
 import com.example.alexp.aplication.Repository.AlimentosRepository;
+import com.example.alexp.aplication.Repository.ComidasAlimentoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +31,7 @@ public class ListaAlimentosActivity extends AppCompatActivity {
     private AlimentosAdapter rvadapter;
     private FloatingActionButton fab;
     public static Comida c;
-    public static ComidaDAO cdao;
+    public static ComidasAlimentoRepository carep;
     public List<Pair<Integer, Float>> alimentos = new ArrayList<Pair<Integer, Float>>();
 
     @Override
@@ -58,8 +52,7 @@ public class ListaAlimentosActivity extends AppCompatActivity {
         rvadapter.setNombrecomida(getIntent().getExtras().getString("nombrecomida"));
         rv.setAdapter(rvadapter);
 
-        cdao=AppDataBase.getInstance(this).comidaDAO();
-
+        carep=new ComidasAlimentoRepository(getApplication());
 
         fab= findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +67,11 @@ public class ListaAlimentosActivity extends AppCompatActivity {
                     String comida=getIntent().getExtras().getString("nombrecomida");
                     int id = alimentos.get(j).first;
                     float cantidad = alimentos.get(j).second;
-                    Comida_Alimento ca = new Comida_Alimento(comida,id,cantidad);
-                    cdao.insertComidaAlimento(ca);
+                    int dia = getIntent().getExtras().getInt("dia");
+                    int mes = getIntent().getExtras().getInt("mes");
+                    int anio = getIntent().getExtras().getInt("anio");
+                    Comida_Alimento ca = new Comida_Alimento(comida,id,cantidad,dia,mes,anio);
+                    carep.insertComidaAlimento(ca);
                 }
                startActivity(i);
             }

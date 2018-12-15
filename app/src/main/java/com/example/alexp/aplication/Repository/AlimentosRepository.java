@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import com.example.alexp.aplication.API.NetworkingAndroidHttpClientJSONActivity;
 import com.example.alexp.aplication.DataBase.AppDataBase;
 import com.example.alexp.aplication.Objects.Alimento;
-import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
+import com.example.alexp.aplication.ObjectsDAO.AlimentoDAO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,10 +25,10 @@ public class AlimentosRepository {
     private static final String PROTEINAS = "proteinas";
     private static final String HIDRATOS = "hidratos";
     private static final String GRASAS = "grasas";
-    private static ComidaDAO dao;
+    private static AlimentoDAO dao;
 
     public AlimentosRepository(Application app) {
-        dao = AppDataBase.getInstance(app).comidaDAO();
+        dao = AppDataBase.getInstance(app).alimentoDAO();
     }
 
     public List<Alimento> getAlimentos(){
@@ -41,6 +41,13 @@ public class AlimentosRepository {
         }
         return a;
     }
+
+    public Alimento getAlimentoById(int id){ return getAlimentoByIdPrivate(id); }
+
+    public void insertAlimento(Alimento a){insertAlimentoPrivate(a);}
+
+    public void deleteAlimento(Alimento a){deleteAlimentoPrivate(a);}
+
     private static class getAlimentosPrivate extends AsyncTask<Void, Void, List<Alimento>>{
 
         protected List<Alimento> doInBackground (Void...params){
@@ -69,4 +76,10 @@ public class AlimentosRepository {
             return alimentos;
         }
     }
+
+    private Alimento getAlimentoByIdPrivate(int id){ return dao.getAlimento(id); }
+
+    private void insertAlimentoPrivate(Alimento a){ dao.insertAlimento(a);}
+
+    private void deleteAlimentoPrivate(Alimento a){dao.deleteAlimento(a);}
 }

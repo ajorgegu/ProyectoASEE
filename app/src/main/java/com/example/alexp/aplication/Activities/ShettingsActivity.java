@@ -1,10 +1,8 @@
 package com.example.alexp.aplication.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.annotation.Nullable;
-import android.widget.Toolbar;
 
 import com.example.alexp.aplication.R;
 

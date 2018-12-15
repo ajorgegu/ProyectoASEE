@@ -1,4 +1,4 @@
-package com.example.alexp.aplication.Adapters;
+package com.example.alexp.aplication.Holders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,15 +7,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.alexp.aplication.Adapters.itemClickListener;
 import com.example.alexp.aplication.R;
 
 public class HolderDescripcion extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
-    TextView t;
-    EditText et;
-    itemClickListener icl;
-    Button borrar;
-    Button guardar;
+    public TextView t;
+    public EditText et;
+    public itemClickListener icl;
+    public Button borrar;
+    public Button guardar;
 
     public HolderDescripcion(@NonNull View itemView) {
         super(itemView);

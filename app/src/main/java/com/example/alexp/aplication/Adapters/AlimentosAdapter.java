@@ -2,8 +2,6 @@ package com.example.alexp.aplication.Adapters;
 
 import  android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -13,9 +11,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.alexp.aplication.DataBase.AppDataBase;
+import com.example.alexp.aplication.Holders.HolderAlimentos;
 import com.example.alexp.aplication.Objects.Alimento;
-import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 import com.example.alexp.aplication.R;
 
 import java.util.ArrayList;
@@ -27,9 +24,7 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     private ArrayList<Alimento> alimentos;
     private List<Pair<Integer, Float>> alimcant;
     private static Context c;
-    private ComidaDAO cdao;
     private String nombrecomida;
-    private EditText e;
     private ArrayList<Pair<HolderAlimentos,Integer>> haux= new ArrayList<Pair<HolderAlimentos,Integer>>();
 
     public AlimentosAdapter(Context c, ArrayList<Alimento> alimentos,List<Pair<Integer, Float>> alimcant ){

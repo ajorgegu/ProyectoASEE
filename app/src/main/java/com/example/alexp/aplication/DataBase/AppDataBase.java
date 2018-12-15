@@ -8,6 +8,8 @@ import android.content.Context;
 import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida;
 import com.example.alexp.aplication.Objects.Comida_Alimento;
+import com.example.alexp.aplication.ObjectsDAO.AlimentoDAO;
+import com.example.alexp.aplication.ObjectsDAO.ComidaAlimentoDAO;
 import com.example.alexp.aplication.ObjectsDAO.ComidaDAO;
 
 @Database(entities = {Comida.class , Alimento.class, Comida_Alimento.class}, version =5)
@@ -21,4 +23,6 @@ public abstract class AppDataBase extends RoomDatabase {
     }
 
     public abstract ComidaDAO comidaDAO();
+    public abstract AlimentoDAO alimentoDAO();
+    public abstract ComidaAlimentoDAO comidaalimentoDAO();
 }

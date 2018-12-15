@@ -1,4 +1,4 @@
-package com.example.alexp.aplication.Adapters;
+package com.example.alexp.aplication.Holders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,14 +7,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.alexp.aplication.Adapters.itemClickListener;
 import com.example.alexp.aplication.R;
 
 public class HolderAlimentos extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
-    TextView t;
-    CheckBox cb;
-    EditText et;
-    itemClickListener icl;
+    public TextView t;
+    public  CheckBox cb;
+    public EditText et;
+    public itemClickListener icl;
 
     public HolderAlimentos(@NonNull View itemView) {
         super(itemView);

@@ -1,17 +1,19 @@
-package com.example.alexp.aplication.Adapters;
+package com.example.alexp.aplication.Holders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.alexp.aplication.Adapters.itemClickListener;
 import com.example.alexp.aplication.R;
 
 public class HolderComidas extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
-    Button b,borrar;
-    itemClickListener icl;
-    itemClickListener ic2;
+    public Button b,borrar;
+    public itemClickListener icl;
+    public itemClickListener ic2;
 
     public HolderComidas(@NonNull View itemView) {
         super(itemView);
