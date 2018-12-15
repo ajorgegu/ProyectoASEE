@@ -27,20 +27,18 @@ import java.util.List;
 
 public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> {
 
-    private ArrayList<Alimento> alimentos;
+    private ArrayList<Alimento> alimentos= new ArrayList<Alimento>();
     private ArrayList<Comida_Alimento> c_a= new ArrayList<>();
     private List<Pair<Integer, Float>> alimcant= new ArrayList<Pair<Integer, Float>>();
     private static Context c;
     private ComidasAlimentoRepository carep;
     private String nombrecomida;
-    private Application app;
+    private int dia,mes,anio;
     private ArrayList<Pair<HolderDescripcion,Integer>> haux= new ArrayList<Pair<HolderDescripcion,Integer>>();
 
-    public DescripcionAdapter(Context c, ArrayList<Alimento> alimentos, ArrayList<Comida_Alimento>c_a, Application app){
+    public DescripcionAdapter(Context c, Application app){
         this.c=c;
-        this.alimentos=alimentos;
-        this.c_a=c_a;
-        this.app=app;
+        carep=new ComidasAlimentoRepository(app);
     }
 
     @Override
@@ -57,7 +55,8 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
                 "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
                 "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
                 "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
-
+        Log.d("Tamaño comidaalimento: ",String.valueOf(c_a.size())+" "+i);
+        Log.d("Cantidad: ",String.valueOf(c_a.get(i).getCantidad())+" "+i);
         holder.et.setText(String.valueOf(c_a.get(i).getCantidad()));
 
         Pair p = new Pair(holder,alimentos.get(i).getId());
@@ -66,11 +65,6 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
         holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                    carep=new ComidasAlimentoRepository(app);
-                Intent intent = ((Activity) c).getIntent();
-                int anio=intent.getExtras().getInt("anio");
-                int mes=intent.getExtras().getInt("mes");
-                int dia=intent.getExtras().getInt("dia");
                     carep.deleteOneComidaAlimento(c_a.get(pos).getComida(),c_a.get(pos).getId(),c_a.get(pos).getCantidad(),dia,mes,anio);
                     alimentos.remove(pos);
                     notifyDataSetChanged();
@@ -86,6 +80,12 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
         return this.nombrecomida;
     }
 
+    public void setFecha(int dia, int mes, int anio){
+        this.dia=dia;
+        this.mes=mes;
+        this.anio=anio;
+    }
+
     public List<Pair<Integer, Float>> getAlimcant(){
        for(int i=0; i<haux.size();i++){
            Pair p = new Pair(haux.get(i).second,Float.parseFloat(haux.get(i).first.et.getText().toString()));
@@ -95,6 +95,11 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
         return this.alimcant;
     }
 
+    public void setAlimentos(ArrayList<Alimento> alimentos, ArrayList<Comida_Alimento> calimentos){
+        this.alimentos=alimentos;
+        this.c_a=calimentos;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {return alimentos.size();}
@@ -111,5 +116,4 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
             borrar = v.findViewById(R.id.borrarcomida);
         }
     }
-
 }

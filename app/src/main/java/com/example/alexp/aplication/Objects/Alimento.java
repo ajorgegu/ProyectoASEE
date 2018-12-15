@@ -4,6 +4,7 @@ package com.example.alexp.aplication.Objects;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class Alimento implements Serializable {
         this.grasas=0;
     }
 
+    @Ignore
     public Alimento(int id, String nombre, float cantidad, String unidad, float proteinas, float hidratos, float grasas) {
         this.id = id;
         this.nombre = nombre;
