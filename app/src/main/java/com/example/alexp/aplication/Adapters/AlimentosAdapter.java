@@ -42,18 +42,18 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
     @Override
     public void onBindViewHolder(final HolderAlimentos holder, int i) {
         holder.t.setText(alimentos.get(i).getNombre()+"\n"+
-                 "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
-                 "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
-                 "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
-                 "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
-                 "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
+                "Cantidad: "+        Float.toString(alimentos.get(i).getCantidad()) +"\n"+
+                "Unidad: "+ alimentos.get(i).getUnidad() +"\n"+
+                "Proteinas: "+ Float.toString(alimentos.get(i).getProteinas()) +"\n"+
+                "Hidratos: "+Float.toString(alimentos.get(i).getHidratos()) +"\n"+
+                "Grasas: "+Float.toString(alimentos.get(i).getGrasas()) +"\n");
         holder.et.setText("0");
         Pair p = new Pair(holder,alimentos.get(i).getId());
         haux.add(p);
         holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-              Log.d("Item seleccionado: ",String.valueOf(pos));
+                Log.d("Item seleccionado: ",String.valueOf(pos));
             }
         });
     }
@@ -78,16 +78,4 @@ public class AlimentosAdapter extends RecyclerView.Adapter<HolderAlimentos> {
 
     @Override
     public int getItemCount() {return alimentos.size();}
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView alimento;
-        public CheckBox cb;
-        public EditText cantidad;
-        public ViewHolder(View v) {
-            super(v);
-            alimento=v.findViewById(R.id.fila_alimento);
-            cb = v.findViewById(R.id.checkBox);
-            cantidad = v.findViewById(R.id.cantidadAlimento);
-        }
-    }
 }

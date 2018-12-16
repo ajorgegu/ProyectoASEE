@@ -75,16 +75,4 @@ public class ComidaAdapter extends RecyclerView.Adapter<HolderComidas> {
     public int getItemCount() {
         return comidas.size();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
-        public Button comida;
-        public Button borrar;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            comida=itemView.findViewById(R.id.fila_comida);
-            borrar=itemView.findViewById(R.id.borrarcomida);
-        }
-    }
 }

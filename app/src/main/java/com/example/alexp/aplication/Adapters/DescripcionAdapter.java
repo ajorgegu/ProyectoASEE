@@ -1,9 +1,7 @@
 package com.example.alexp.aplication.Adapters;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.Pair;
@@ -19,7 +17,6 @@ import com.example.alexp.aplication.Objects.Alimento;
 import com.example.alexp.aplication.Objects.Comida_Alimento;
 import com.example.alexp.aplication.R;
 import com.example.alexp.aplication.Repository.ComidasAlimentoRepository;
-import com.example.alexp.aplication.Repository.ComidasRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +62,9 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
         holder.setItemClickListener( new itemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                    carep.deleteOneComidaAlimento(c_a.get(pos).getComida(),c_a.get(pos).getId(),c_a.get(pos).getCantidad(),dia,mes,anio);
-                    alimentos.remove(pos);
-                    notifyDataSetChanged();
+                carep.deleteOneComidaAlimento(c_a.get(pos).getComida(),c_a.get(pos).getId(),c_a.get(pos).getCantidad(),dia,mes,anio);
+                alimentos.remove(pos);
+                notifyDataSetChanged();
             }
         });
     }
@@ -87,11 +84,11 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
     }
 
     public List<Pair<Integer, Float>> getAlimcant(){
-       for(int i=0; i<haux.size();i++){
-           Pair p = new Pair(haux.get(i).second,Float.parseFloat(haux.get(i).first.et.getText().toString()));
-           Log.d("Par introducido: ",p.first.toString()+" "+p.second.toString());
-           alimcant.add(p);
-       }
+        for(int i=0; i<haux.size();i++){
+            Pair p = new Pair(haux.get(i).second,Float.parseFloat(haux.get(i).first.et.getText().toString()));
+            Log.d("Par introducido: ",p.first.toString()+" "+p.second.toString());
+            alimcant.add(p);
+        }
         return this.alimcant;
     }
 
@@ -103,17 +100,4 @@ public class DescripcionAdapter extends RecyclerView.Adapter<HolderDescripcion> 
 
     @Override
     public int getItemCount() {return alimentos.size();}
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView alimento;
-        public EditText cantidad;
-        public Button borrar;
-        public ViewHolder(View v) {
-            super(v);
-            alimento=v.findViewById(R.id.fila_alimento);
-            cantidad = v.findViewById(R.id.cantidadAlimento);
-            borrar = v.findViewById(R.id.borrarcomida);
-        }
-    }
 }
