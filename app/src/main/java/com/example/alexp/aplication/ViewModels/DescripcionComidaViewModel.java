@@ -14,12 +14,10 @@ import java.util.List;
 public class DescripcionComidaViewModel extends AndroidViewModel {
 
     private ComidasAlimentoRepository carep;
-    private LiveData<Comida_Alimento> allca;
 
     public DescripcionComidaViewModel(@NonNull Application app){
         super(app);
         carep=new ComidasAlimentoRepository(app);
-        allca=null;
     }
 
     public LiveData<List<Comida_Alimento>> getAllca(String comida, int dia , int mes, int anio) {

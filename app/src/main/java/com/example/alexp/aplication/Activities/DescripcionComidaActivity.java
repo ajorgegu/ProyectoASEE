@@ -53,18 +53,7 @@ public class DescripcionComidaActivity extends AppCompatActivity {
         rv.setAdapter(rvadapter);
         rvadapter.setFecha(dia,mes,anio);
 
-        dvm.getAllca(comida,dia,mes,anio).observe(this, new Observer<List<Comida_Alimento>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Comida_Alimento> comida_alimentos) {
-                        if(alimentos.size()==0) {
-                            for (int i = 0; i < comida_alimentos.size(); i++) {
-                                alimentos.add(arep.getAlimentoById(comida_alimentos.get(i).getId()));
-                            }
-                            Log.d("Tamaño: ", String.valueOf(alimentos.size()));
-                        }
-                        rvadapter.setAlimentos(alimentos, (ArrayList<Comida_Alimento>) comida_alimentos);
-                    }
-                });
+        
 
         guardar = findViewById(R.id.guardarCambios);
         guardar.setOnClickListener(new View.OnClickListener() {
